@@ -93,20 +93,25 @@ if "authenticated" not in st.session_state:
 if not st.session_state.authenticated:
 
     st.title("AI Invoice OCR Inventory System")
-    st.subheader("Admin Login")
 
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
+    # Use columns to make the login box smaller and centered
+    _, col, _ = st.columns([1, 1, 1])
+    
+    with col:
+        st.subheader("Admin Login")
 
-    if st.button("Login"):
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
 
-        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-            st.session_state.authenticated = True
-            st.success("Login Successful")
-            st.rerun()
+        if st.button("Login"):
 
-        else:
-            st.error("Invalid username or password")
+            if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+                st.session_state.authenticated = True
+                st.success("Login Successful")
+                st.rerun()
+
+            else:
+                st.error("Invalid username or password")
 
     st.stop()
 
